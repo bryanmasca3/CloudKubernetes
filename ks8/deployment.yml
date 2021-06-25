@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudl-server-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cloudl-server
+    spec:
+      containers:
+        - name: cloudl-server
+          image: lancloud/backend:v3
+          ports:
+            - containerPort: 5000
+              name: nodejs-port
+          livenessProbe:
+            httpGet:
+              port: nodejs-port
+              path: /health
+            initialDelaySeconds: 15
+            timeoutSeconds: 30
+          readinessProbe:
+            httpGet:
+              port: nodejs-port
+              path: /ready
+            initialDelaySeconds: 15
+            timeoutSeconds: 30
+          resources:
+            requests:
+              cpu: 200m
+  selector:
+    matchLabels:
+      app: cloudl-server
