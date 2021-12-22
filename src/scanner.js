@@ -4,6 +4,7 @@ const Operators=["+",">","=::","=:","=",":"];
 const functionS=["show"];
 
 const Letters=/^[A-Za-z]+[0-9]*$/;
+const Numbers=/^[0-9]+$/;
 
 const isKeyword=value=>keywords.includes(value);
 const isOperators=value=>Operators.includes(value);
@@ -14,18 +15,22 @@ const isSTR=value=>value.charAt(0)=='"'  && value.charAt(value.length - 1)=='"'?
 
 
 const isLetter=value=>Letters.test(value);
+const isNumber=value=>Numbers.test(value);
 
-let TbLex=[];
-let TbCode=[];
 
 const SplitCode = (str,dele) => str.split(dele).map(s => s.trim()).filter(s => s.length);
   
 
 export const Scanner=(sourceCode)=>{
+  let TbLex=[];
+  let TbCode=[];
   const Lines=SplitCode(sourceCode,";");  
+  let blanklines=sourceCode.split("\n").map(s => s.trim()).length; 
+
   let rowCode= [];
   let newd
   let typeData=""
+  let linescomments=0
   Lines.map((line)=>{
     if(line.slice(0,2)!=="//".trim()){
       rowCode= [];
@@ -45,9 +50,22 @@ export const Scanner=(sourceCode)=>{
            data=valT         
          }else{         
            newd=true
-           data={type:'ID',category:typeData,name: t}
+           if(!typeData){
+            if(isLetter(t)){
+              data={type:'ERROR',category:'ID',name: t}
+            }else if(isNumber(t)){
+              data={type:'ERROR',category:'ID',name: t}
+            }else{
+              data={type:'ERROR',category:'ID',name: t}
+            }
+           }else{
+            data={type:'ID',category:typeData,name: t}
+           }         
          }
-       } else if (isSTR(t)) {  
+       }else if (isNumber(t)) {  
+        data={type: 'ERROR', category: 'NUM',name: t}
+        newd=true
+      } else if (isSTR(t)) {  
          data={type: 'STR', category: 'STR',name: t}
          newd=true
        } else if (isPuntuation(t)) {
@@ -62,8 +80,10 @@ export const Scanner=(sourceCode)=>{
      })
      typeData=""
      TbCode.push(rowCode) 
+    }else{
+      linescomments=linescomments+1
     }    
   })
-  return TbCode
+  return [TbCode,linescomments,blanklines=blanklines-Lines.length]
   
 }

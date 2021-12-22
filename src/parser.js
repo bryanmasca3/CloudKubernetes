@@ -69,8 +69,10 @@
             }
             subAlgo=[];
             subAlgo.push(stack.join(' '))
-            subAlgo.push(input.slice(index).map((item)=>item.category).join(' '))
+            subAlgo.push(input.slice(index).map((item)=>item.category).join(' '))            
             subAlgo.push(rule)
+
+            ok=subAlgo[1].trim()===''?true:false;
             
             segAlgo.push(subAlgo);
         }

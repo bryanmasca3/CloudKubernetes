@@ -4,26 +4,24 @@ img img
 text text
 funct box
 
-style = STR
+style = A
 img = STR
 text = STR
 
-
-box =: [ ] ///para este caso no funcionaria
-box =: [ box ]
-box =: [ box , box ]
-
 box =:: box
+box =: [ ]
+box =: [ box ]
+
 box =:: box + style
 img =:: img + style
 text =:: text + style
-
 box =:: box > box
 box =:: box > text
 box =:: box > img
 box =:: box > box + style
 box =:: box > text + style
 box =:: box > img + style
+box =: [ box , box ]
 box =:: box > box > box
 box =:: box > box > text
 box =:: box > box > img
@@ -32,8 +30,8 @@ box =:: box > text > text
 box =:: box > text > img
 box =:: box > img > box
 box =:: box > img > text
+box =:: box > img > img
 
-for ( box : box ) do { funct box }
 ----------------------------------
 text payaso1;
 text payaso2;
@@ -53,8 +51,4 @@ caja3 =:: caja3 > payaso2;
 boxes =: [ caja2 , caja3 , contenedor ];
 show caja1;
 box it;
-for ( it : boxes ) do {
-    show it
-};
-    
 -------------------------------------

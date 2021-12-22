@@ -11,11 +11,9 @@ export const EPSILON = 'ε';
 const gramm=`W -> B VARSB'
             W -> S VARSS'
             W -> I VARSI'
-            W -> T VARST'
-            W -> for ( EXP ) do ASIG
+            W -> T VARST'            
             W -> F B
-            EXP-> B : B
-            ASIG->{ F B  }
+            EXP-> B : B        
             ARTB -> [ ARB' ]
             ARS' -> ε
             ARS' -> ELS

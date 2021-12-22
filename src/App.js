@@ -36,8 +36,8 @@ function App() {
 
     };*/
     const cleanElements=()=>{
-      updateList(numArray);
-      setvalueCode("");
+      //updateList(numArray);
+      //setvalueCode("");
       updateResponse({})
       document.getElementById("canva").innerHTML = '';
     }
@@ -137,46 +137,50 @@ function App() {
 
                                     </tbody>
                             </table>                  
-                      </Tab>
-                      <Tab eventKey="Seguimiento" title="Seguimiento">              
+                      </Tab>*/} 
+                      <Tab eventKey="Seguimiento" title="Tokens">              
                       <table className="table">
                               <thead>
                                 <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Stack</th>
-                                  <th scope="col">Input</th>
-                                  <th scope="col">Rule</th>
-                                                               
+                                  <th scope="col">N</th>
+                                  <th scope="col">Type</th>
+                                  <th scope="col">Category</th>
+                                  <th scope="col">Name</th>                                                                                               
                                 </tr>
                               </thead>
+                             
                               <tbody>
-                                {respo.success?(respo.algorithm?.map((item,index)=>(
-                                <tr key={index}>
-                                  <th scope="row">{index}</th>
-                                  <td>{item[0]}</td>
-                                  <td>{item[1]}</td> 
-                                  <td>{item[2]}</td>                                                             
-                                </tr>   
-                                  ))):<p>Error</p>}
-
+                                {respo.tableTokens?.map((item,index)=>(                                  
+                                  item.map((i)=>(
+                                    <tr key={index}>
+                                      <th scope="row">{index+1}</th>
+                                      <td>{i.type}</td>
+                                      <td>{i.category}</td> 
+                                      <td>{i.name}</td>                                                             
+                                    </tr>  
+                                  ))
+                                ))}
                                     </tbody>
-                            </table> 
-                  table:TableErrorSintaxis,success:success    
-                      </Tab> */}   
+                            </table>                
+                      </Tab>   
 
-                    <Tab eventKey="Tabla" title="Errores">
-                                            
-                                        <table className="table">                                                                 
-                                        <tbody>
-                                          {!respo.success?(
-                                          respo.table?.map((item,index)=>(
-                                          <tr key={index} style={{"textAlign":"center"}}>                                                                             
-                                               <td>{"Error en la linea:"}</td>    
-                                               <td>{item[0]}</td>  
-                                               <td>{"La sentencia no es reconocida por el compilador"}</td>                                                                                                                                                                                                                  
-                              </tr>   
-                                ))):<p>No hay errores</p>}
-
+                    <Tab eventKey="Tabla" title="Errores">                                            
+                                        <table className="table">                                                                                                        
+                                            <thead>
+                                              {!respo.success?(<th colspan="3">No se puede ejecutar, primero resuelve los siguientes errores:</th>):(
+                                                <th colspan="3">No hay errores</th>
+                                              )}
+                                            </thead> 
+                                            <tbody>
+                                          {                                  
+                                          respo.table?.map((item,index)=>
+                                        
+                                          !item[2]?(<tr key={index} style={{color:"red"}}>       
+                                                                                                                 
+                                              <td >{"Error en la linea:"}</td>           
+                                              <td >{Number(item[0])}</td>                                                                                   
+                                              <td>{"La sentencia no es reconocida por el compilador"}</td></tr>):<tr></tr>                                                                                                                                                                                                                                                                                                                           
+                                )}
                                     </tbody>
                             </table>                  
                       </Tab>

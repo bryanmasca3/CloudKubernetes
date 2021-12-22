@@ -1,0 +1,71 @@
+/////////////ASIGNACION DE ERROR DE NUMEROS
+box header;
+box 11;
+//////////////////ERROR DE ASIGNACION DE ERROR
+text texto1;
+box box1;
+b = "sdsdsdsd";
+///////////////////
+
+box caja1;
+box caja2;
+style style1;
+box boxes;
+text text1;
+img image;
+text1 = "NUEVO";
+style1 = "color:red,font-weight:bold";
+image = "https://picsum.photos/200/300";
+boxes =:: caja1 > image;
+boxes =:: caja1 > text1 + style1;
+show boxes;
+
+////////////ERROR
+box caja1;
+box caja2;
+style style1;
+box boxes;
+text text1;
+img image;
+text1 = "NUEVO";
+style1 = "color:red,font-weight:bold";
+image = "https://picsum.photos/200/300";
+boxes =:: caja1 > image;
+boxes =:: caja1 > style1 + text1;
+show boxes;
+//////////////////////
+
+box header;
+img logo;
+style SHtexto;
+style SHMenu;
+style SHeader;
+style Slogo;
+box Clogo;
+box Cmenu;
+text Tenlace1;
+text Tenlace2;
+text Tenlace3;
+text Tenlace4;
+Tenlace1 = "Inicio";
+Tenlace2 = "Nosotros";
+Tenlace3 = "Servicios";
+Tenlace4 = "Contactanos";
+SHtexto = "font-size:18px,color:white,padding:15px,font-weight:bold";
+SHMenu = "display:flex";
+SHeader = "display:flex,background-color:black,padding:10px,justify-content:space-between";
+logo = "https://raw.githubusercontent.com/bryanmasca3/CompilerDemo/main/logo.png";
+Slogo = "width:100px,height:100px";
+Cmenu =:: Cmenu + SHMenu;
+Cmenu =:: Cmenu > Tenlace1 +  SHtexto;
+Cmenu =:: Cmenu > Tenlace2 +  SHtexto;
+Cmenu =:: Cmenu > Tenlace3 +  SHtexto;
+Cmenu =:: Cmenu > Tenlace4 +  SHtexto;
+Clogo =:: Clogo > logo + Slogo;
+header =:: header + SHeader;
+header =:: header > Clogo;
+header =:: header > Cmenu;
+show header;
+
+
+///////////// ERROR CAMBIAR ID POR NUMERO EN ESTILO

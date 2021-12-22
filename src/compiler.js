@@ -53,7 +53,7 @@ const checkErrorS=(TableErrorSintaxis)=>{
 }
 export const runCompiler=(sourceCode)=>{
 
-  const table=Scanner(sourceCode); 
+  const [table,linescomments,blanklines]=Scanner(sourceCode); 
   const TableErrorSintaxis=Parser(table);
 
   var success=false;
@@ -63,10 +63,10 @@ export const runCompiler=(sourceCode)=>{
     GenerateCode(AFT,ST)
   }
  
-  return {table:TableErrorSintaxis,success:success}  
+  return {table:TableErrorSintaxis,tableTokens:table,success:success,linecomment:linescomments,blanklines:blanklines}  
 
 } 
-const Transformation=(table,TableErrorSintaxis)=>{
+const Transformation=(table)=>{
   let AFT = {
     tag : 'code',   
     body:[]
@@ -106,6 +106,7 @@ const Transformation=(table,TableErrorSintaxis)=>{
           findEle['value']=ele[2].name
           break;
         case "=:":
+          var Parent=[]
           var findEle=SymbolsTable.find((E)=>
             E.name===ele[0].name
           )
@@ -116,7 +117,15 @@ const Transformation=(table,TableErrorSintaxis)=>{
           var index=cadString.indexOf(":")
           var elementArrays=cadString.substring(index+1).replace(/\[|\]/g,'').split(",")
           
-          findEle['children']=elementArrays
+          findEle['children']=[]          
+          let child=[]
+          elementArrays.forEach((item)=>{
+            var Ele=SymbolsTable.find((E)=>
+              E.name===item
+            )
+            child.push(Ele);            
+          })
+          findEle['children'].push(child);
           break;
         case "=::":
           var findEle=SymbolsTable.find((E)=>
