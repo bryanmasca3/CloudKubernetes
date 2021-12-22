@@ -13,12 +13,10 @@ const gramm=`W -> B VARSB'
             W -> I VARSI'
             W -> T VARST'
             W -> for ( EXP ) do ASIG
+            W -> F B
             EXP-> B : B
-            ASIG->{ B B' }
-            ARTS -> [ ARS' ]
+            ASIG->{ F B  }
             ARTB -> [ ARB' ]
-            ARTI -> [ ARI' ]
-            ARTT -> [ ART' ]
             ARS' -> ε
             ARS' -> ELS
             ARB' -> ε
@@ -41,31 +39,37 @@ const gramm=`W -> B VARSB'
             ELT' -> ε
             B' -> > Y'
             B' -> + S
+            B' -> ε
             L' -> + S
             Y' -> B B'
+            Y' -> T B'
+            Y' -> I B'
             Y -> I
             Y -> T
+
             VARSB' -> =: ARTB
             VARSB' -> =:: B B'
-            VARSB' -> ID
-            VARSS' -> = A
-            VARSS' -> =: ARTS
-            VARSS' -> ID
+            VARSB' -> box
+
+            VARSS' -> = STR
+
+            VARSS' -> style
+
             VARSI' -> = STR
-            VARSI' -> =: ARTI
+
             VARSI' -> =:: I L'
-            VARSI' -> ID
+            VARSI' -> img
+
             VARST' -> = STR
-            VARST' -> =: ARTT
+
             VARST' -> =:: T L'
-            VARST' -> ID
+            VARST' -> text
             L -> Y
             B -> box
             I -> img
             T -> text
             S -> style
-            A -> attribute
-            attribute -> < STR >`;
+            F -> funct`;
 
 var alphabet;
 var nonterminals;

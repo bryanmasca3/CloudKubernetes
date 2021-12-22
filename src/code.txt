@@ -1,0 +1,179 @@
+//Header;
+box header;
+img logo;
+style SHtexto;
+style SHMenu;
+style SHeader;
+style Slogo;
+box Clogo;
+box Cmenu;
+text Tenlace1;
+text Tenlace2;
+text Tenlace3;
+text Tenlace4;
+
+//Slider;
+box slider;
+img Islide;
+text title;
+text subtitle;
+style SHTitle;
+style SHSubtitle;
+style SSlider;
+
+//Contenido;
+style Xbox;
+style Xmain;
+style CtextTitle;
+box main;
+box CBox1;
+img Ibox1;
+text Tbox1;
+
+box CBox2;
+img Ibox2;
+text Tbox2;
+
+box CBox3;
+img Ibox3;
+text Tbox3;
+
+box CBox4;
+img Ibox4;
+text Tbox4;
+
+box CBox5;
+img Ibox5;
+text Tbox5;
+
+box CBox6;
+img Ibox6;
+text Tbox6;
+
+// Footer;
+box footer;
+style Ffooter;
+style FText;
+text TFtext1;
+text TFtext2;
+text TFtext3;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////;
+
+//Header;
+
+box header;
+img logo;
+box Clogo;
+box Cmenu;
+
+Tenlace1 = "Inicio";
+Tenlace2 = "Nosotros";
+Tenlace3 = "Servicios";
+Tenlace4 = "Contactanos";
+
+SHtexto = "font-size:18px,color:white,padding:15px,font-weight:bold";
+SHMenu = "display:flex";
+SHeader = "display:flex,background-color:black,padding:10px,justify-content:space-between";
+logo = "https://raw.githubusercontent.com/bryanmasca3/CompilerDemo/main/logo.png";
+Slogo = "width:100px,height:100px";
+
+Cmenu =:: Cmenu + SHMenu;
+Cmenu =:: Cmenu > Tenlace1 +  SHtexto;
+Cmenu =:: Cmenu > Tenlace2 +  SHtexto;
+Cmenu =:: Cmenu > Tenlace3 +  SHtexto;
+Cmenu =:: Cmenu > Tenlace4 +  SHtexto;
+
+
+Clogo =:: Clogo > logo + Slogo;
+header =:: header + SHeader;
+header =:: header > Clogo;
+header =:: header > Cmenu;
+
+
+// Slider;
+SSlider = "position:relative";
+SHTitle = "position:absolute,bottom:30px,right:50px,font-weight:bold,font-size:70px,color:white";
+SHSubtitle = "position:absolute,bottom:10px,right:50px,font-size:25px,color:white";
+
+title = "MEJORES";
+subtitle = "Tiempos";
+Islide = "https://picsum.photos/850/400";
+
+slider =:: slider + SSlider;
+slider =:: slider > Islide;
+slider =:: slider > title + SHTitle;
+slider =:: slider > subtitle + SHSubtitle;
+
+// Main;
+
+Xmain = "display:flex,padding-top:20px,padding-bottom:20px,width:100%,flex-wrap:wrap,justify-content:space-between";
+Xbox = "padding:5px,border-size:1px,border-color:black";
+CtextTitle = "font-size:15px,color:black,font-weight:bold,text-align:center";
+
+Ibox1 = "https://picsum.photos/250/250?random=${Math.random()}";
+Ibox2 = "https://picsum.photos/250/250?random=${Math.random()}";
+Ibox3 = "https://picsum.photos/250/250?random=${Math.random()}";
+Ibox4 = "https://picsum.photos/250/250?random=${Math.random()}";
+Ibox5 = "https://picsum.photos/250/250?random=${Math.random()}";
+Ibox6 = "https://picsum.photos/250/250?random=${Math.random()}";
+
+Tbox1 = "Arequipa";
+Tbox2 = "Cuszo";
+Tbox3 = "Lima";
+Tbox4 = "Trujillo";
+Tbox5 = "Puno";
+Tbox6 = "Amazonas";
+
+CBox1 =:: CBox1 + Xbox;
+CBox1 =:: CBox1 > Ibox1; 
+CBox1 =:: CBox1 > Tbox1 + CtextTitle; 
+
+CBox2 =:: CBox2 + Xbox;
+CBox2 =:: CBox2 > Ibox2;
+CBox2 =:: CBox2 > Tbox2 + CtextTitle;
+
+CBox3 =:: CBox3 + Xbox;
+CBox3 =:: CBox3 > Ibox3;
+CBox3 =:: CBox3 > Tbox3 + CtextTitle;
+
+CBox4 =:: CBox4 + Xbox;
+CBox4 =:: CBox4 > Ibox4;
+CBox4 =:: CBox4 > Tbox4 + CtextTitle;
+
+CBox5 =:: CBox5 + Xbox;
+CBox5 =:: CBox5 > Ibox5;
+CBox5 =:: CBox5 > Tbox5 + CtextTitle;
+
+CBox6 =:: CBox6 + Xbox;
+CBox6 =:: CBox6 > Ibox6;
+CBox6 =:: CBox6 > Tbox6 + CtextTitle;
+
+main =:: main + Xmain;
+main =:: main > CBox1;
+main =:: main > CBox2;
+main =:: main > CBox3;
+main =:: main > CBox4;
+main =:: main > CBox5;
+main =:: main > CBox6;
+
+// Footer;
+
+FText = "color:white,font-size:15px,padding:10px";
+Ffooter = "display:flex,background-color:black,padding:20px,justify-content:space-around";
+TFtext1 = "Lorem_Ipsum";
+TFtext2 = "Lorem_Polygon";
+TFtext3 = "Lorem_Picsum";
+
+footer =:: footer + Ffooter;
+footer =:: footer > TFtext1 + FText;
+footer =:: footer > TFtext2 + FText;
+footer =:: footer > TFtext3 + FText;
+footer =:: footer > logo;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////;
+
+show header;
+show slider;
+show main;
+show footer;

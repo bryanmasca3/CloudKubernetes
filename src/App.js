@@ -35,11 +35,17 @@ function App() {
      updateResponse(dataCode);
 
     };*/
+    const cleanElements=()=>{
+      updateList(numArray);
+      setvalueCode("");
+      updateResponse({})
+      document.getElementById("canva").innerHTML = '';
+    }
     const handleSubmit = async (e) => {
      e.preventDefault();    
+     cleanElements();  
      const res = runCompiler(valueCode);
      updateResponse(res);
-
     };
   
    useEffect(() => {
@@ -93,7 +99,7 @@ function App() {
               <Row className="title-section">
               <Col xs={12} >  
                     <Tabs defaultActiveKey="Tokens" id="uncontrolled-tab-example" className="mb-3">
-                      <Tab eventKey="Tokens" title="Tokens">
+                   {/*  <Tab eventKey="Tokens" title="Tokens">
                       
                       <table className="table">
                               <thead>
@@ -155,7 +161,29 @@ function App() {
 
                                     </tbody>
                             </table> 
-                      
+                  table:TableErrorSintaxis,success:success    
+                      </Tab> */}   
+
+                    <Tab eventKey="Tabla" title="Errores">
+                                            
+                                        <table className="table">                                                                 
+                                        <tbody>
+                                          {!respo.success?(
+                                          respo.table?.map((item,index)=>(
+                                          <tr key={index} style={{"textAlign":"center"}}>                                                                             
+                                               <td>{"Error en la linea:"}</td>    
+                                               <td>{item[0]}</td>  
+                                               <td>{"La sentencia no es reconocida por el compilador"}</td>                                                                                                                                                                                                                  
+                              </tr>   
+                                ))):<p>No hay errores</p>}
+
+                                    </tbody>
+                            </table>                  
+                      </Tab>
+                      <Tab eventKey="drawnelement" title="canva">              
+                            <div id="canva">
+                               
+                            </div>
                       </Tab>
                     </Tabs>                 
                      {/* <table className="table">
